@@ -54,3 +54,22 @@ function removeActor($myDB, $id){
 	$stmt = $myDB->query($sql);
 	
 }
+function listActorsInMovie($myDB){
+	$sql='SELECT dvdtitles.title, dvdtitles.asin, dvdtitles.price, dvdactors.fname, dvdactors.lname ' . 
+	'FROM dvdtitles INNER JOIN appearances ON dvdtitles.asin=appearances.asin INNER JOIN dvdactors ' . 
+	'ON appearances.actorId=dvdactors.id';
+	$stmt= $myDB->query($sql);
+	while($row=$stmt->fetch()){
+		print_r ($row['title'] . " starring " . $row['fname'] . " " . $row['lname'] . PHP_EOL);
+		//$imloc='http://images.amazon.com/images/P/' . $row['asin'] . '.01.MZZZZZZZ.jpg';
+	
+		//$imageData = base64_encode(file_get_contents($imloc));
+		//echo '<img src="data:image/jpeg;base64,'.$imageData.'">';
+		
+		
+	}
+	
+	
+	
+	
+}
